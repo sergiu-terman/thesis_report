@@ -1,0 +1,368 @@
+\section{Software Design}
+\phantomsection
+
+This chapter contains the description of the software development process
+used to bulid the application. We start with the description of the
+iterative and incremental model of developing software and justify its usage
+for this project. In the spirit of the chosen methodology we describe the
+major iterations of developing the application. For each iteration we state
+what subset of the initial requirements was implemented and state them more
+formally as a use case scenario that are used to get more insight into what
+should be implemented and verify if the designed module fullfills the
+outcomes set at the start of the iteration. We continue by describing the
+implementation details and presenting portions of source code in this
+context. In the last section we present a general overview of modular
+representation of the application and what are the connections between
+various application components.
+
+\subsection{The Software Development Process}
+
+In order to develop the application for this thesis project there was chosen the
+Iterative and Incremental approach. Iterative development is an approach to
+building software in which the overall lifecycle is composed of several
+iterations in sequence \cite{Larman1}. 
+The iterations are organized into a series of short, usually fixed length
+steps called iterations, each iteration providing a tested implementation of
+a part of the system. The system is successively enlarged and refined during
+the iterations. An important input into each iteration is the feedback
+received from the client and the readaptation of the system to the changing
+requirements as the user understands and refines his view upon what
+functionality the software should deliver. The process is illustrated in
+figure \ref{IterativeAndIncremental}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=13cm]{iter}
+\caption{Iterative and Incremental Development, \cite{Larman2}}\label{IterativeAndIncremental}
+\end{figure}
+
+The output of each iteration is not an experimental prototype but a ready to
+use subset of the final system. During each iteration a subset of the
+software requirements is selected and implemented. However an interation
+shouldn't necessarily include the development of a new part of the system.
+Rather it could include some implementation steps for improving the
+performance of the existing modules.
+
+The reason to use this approach for developing the application is that the
+application itself as well as the domain in which it will be used are
+relatively new. There are no current applications on the market suited for
+the needs of the project simply because it is a part of a research project
+implementing an innovative idea in the field of renewable energy sources.
+Therefore there are no clear specifications of the software that can be
+taken as initial requirements. Also the approach itself allows the
+researchers to view intermediate versions of the software and refine their
+views upon how the workflow should be implemented, how the UI\ should look,
+etc.
+
+\subsection{Software Requirements}
+
+Although the application is built in small increments during successive
+iterations, a vision about the software under development and the list of
+requirements must be established at the beginning of the project. The
+description should contain the information about what kind of application is
+being developed (desktop, client-server, etc), who will be the final users
+and what are their goals, what domain processes or activities should the
+software implement. However at this stage it is impossible to define use
+case scenarios in detail. The main outcome of this step should be a list of
+system requirements prioritized by the value they have for the end user.
+
+MHSim is a desktop application that will be used as a modeling and
+computational tool for the design and analysis of the working regime of the
+power station's rotor with rotating blades. The system will allow the user
+to specify the properties of the flow, the rotor and its blades. From a
+computational perspective the system must compute and render the plots for
+functional characteristics such as the forces which act on a blade, the
+torque produced by one blade, the resultant force and torque produced by all
+blades and the information about the power station floating stability. As a
+modeling tool the application should provide an ergonomic and intuitive UI,
+that is the structural parameters should be properly grouped and the UI
+should structure the steps of the workflow in the same way as if the
+modeling activity would be done in a real environment. Because the
+computational routines might last for a considerable amount of time, and the
+solution isn't guaranteed to converge for each case, the user must be able
+to control its execution. The application will be used by researchers to
+analyze a given configuration of the rotor with rotating blades and select
+the model which provides the best performance characteristics based on the
+data generated by the program. Since building the model of the rotor is only
+a stage in the overall power station design the application must provide the
+functionality of saving the data for further processing.
+
+Next there are listed the software requirements derived from the high-level
+description made above and several discussion sessions with the end-user.
+
+\begin{enumerate}[topsep=5pt, partopsep=0pt,itemsep=3pt,parsep=1pt]
+\item The system must provide the values of the hydrodynamic coefficients
+for a given airfoil profile.
+\item The execution of the computational routine should be controlled by the
+user. This includes:
+
+  \begin{enumerate}
+  \item completion status visualization;
+  \item visualizing the computational strategies used;
+  \item cancelling the solutions which don't converge.
+  \end{enumerate}
+
+\item The user should be able to select an airfoil by specifying a NACA\
+profile or reading the coordinates of the airfoil from a file. The number of
+discretization points should be customizable.
+\item The user must be able to enter the following properties of the fluid:
+density, viscosity and the freestream velocity.
+\item The user must be able to specify the following parameters of the rotor
+and blades:
+   \begin{enumerate}
+   \item the length of the rotor lever;
+   \item the number of rotating blades;
+   \item the height and chord length of the blades;
+   \item the point where the blade is fixed to the rotor's lever;
+   \item the number of regions in which a blade changes its direction relative
+           to the flow. For each region the following information should be specified:
+       \begin{enumerate}
+       \item the angle formed by the sector arms;
+       \item the angle between the blade and the rotor lever;
+       \item the angle between the blade and the flow at the start and end regions of the sector;
+        \item an indicator showing if the blade is carried freely by the water flow (the blade in that sector won't contribute to the total                 
+                moment generated by the rotor);
+       \end{enumerate}
+    \end{enumerate}
+\item The system must show the direction of the flow and the direction of rotation of the power station.
+\item The system must provide the graphs and numerical data for the following functional characteristics:
+   \begin{enumerate}
+   \item Hydrodynamic coefficients versus angle of attack;
+   \item Lift, drag, tangential and total force versus position angle;
+   \item Torque generated by a blade and total torque generated by all blades;
+   \item Buoyant stability data: the path traced by the center of application of buoyant forces and the vertical displacement of the center versus position angle.
+   \end{enumerate}
+\end{enumerate}
+
+The user requirements are organized into the use case\ diagram shown in
+figure \ref{UseCases}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=13cm]{ucSystem}
+\caption{System use case diagram}\label{UseCases}
+\end{figure}
+
+The sections that follow describe the software development process as a
+sequence of iterations illustrating the way that the system was built --
+using the incremental and iterative approach. Each iteration (except first
+which is mostly an implementation iteration) \ start with a use case
+scenario that describes the functionality of the system that is implemented
+in that iteration. We analyze the use case scenario to emphasize the details
+that affect the design of the implemented module. Then the design solution
+is presented along with the discussion of the implementation issues. During
+the iteration the usage and implementation of design patterns is emphasized
+and a short description of what design problems it mitigates is given.
+
+\subsection{Iteration 1 -- linking to XFOIL code}
+
+During this iteration we develop a module that provides a simplified
+interface to the computational routines defined in XFOIL that later are used
+by the rest of the application to fullfil the first system requirement - to
+provide the values of the hydrodynamic coefficients for a given airfoil
+profile. The module provides the functions to generate and retrieve airfoil
+coordinates and extract the hydrodynamic coefficients at low angles of
+attack. Since this is an implementation step no use case scenarios are
+defined for this iteration.
+
+\subsubsection{Modifications to XFOIL code}
+
+The algorithms for determining hydrodynamic coefficients of lift, moment and
+drag forces require deep knowledge of CFD and dexterity in implementing
+complex computational methods. An example of the description of computation
+steps involved are described in \cite{Bostan}. An alternative approach would be to study the existing open source
+applications and use the already tested routines. The problem is that none
+of the analyzed programs provide such a module as a software library that
+can be added to our application. One well known program that allows to
+design and analyze isolated airfoils at subsonic speeds is XFOIL \cite{Xfoil}
+. It is released under GNU\ General Public License which means that anyone
+is allowed to study and modify the source code. The first obvious problem is
+that XFOIL is designed as an interactive program: the user is presented with
+a command line menu where he enters commands and recieves response for each
+of the multiple options available. The other implementation problem is that
+XFOIL is written in Fortran 77, an old dialect of Fortran language approved
+as a standard in 1978 but the main part of the application will be written
+in Java. On the other side Fortran is an imperative language specifically
+designed for scientific and other computational intensive applications,
+meaning that the generated source code will perform faster than in most
+other programming langauges.
+
+After studying the source code for 4 weeks solving the first problem proved
+to be a quite manageable task. The only modifications done at the first
+iteration involved transforming the conditional loops that accept user input
+and match against a set of predefined commands into linear routines. The
+input is passed from C++ language binding functions simulating the entered
+commands as if typed by the user. Gathering the results of the computations
+also require a small amount of programming, but in order to better
+understand it, the programming model used in XFOIL\ is shortly described
+next.
+
+{\bf XFOIL\ programming model.} Following the classification of programming languages done in \cite{booch}, the programming model used in XFOIL resembles the one used in Late Third-Generation Programming Languages shown in figure \ref{Late3ProgrammingLanguages}.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{Late3ProgrammingLang}
+\caption{The Topology of Late Third-Generation Programming Languages, \cite{booch}}\label{Late3ProgrammingLanguages}
+\end{figure}
+
+The main entry point in XFOIL contains a loop that matches user input
+against the option from the top level menu. The selection of some option is
+followed either by the direct execution of the computational routines or the
+invocation of a lower lever menu that presents another set of the selected
+menu specific options. Among others there are 2 types of commands: commands
+that directly invoke the routines for implementing the selected option such
+as the command to generate a NACA\ airfoil profile or commands which sole
+purpose is to set a parameter used in further computations, for example
+setting the Reynolds number for the computation of the boundary layer
+equations for viscous fluids. The state of the computations performed in
+different routines is stored in \textit{common blocks}, a Fortran specific
+language construct. Basically a common block represents a named block of
+memory that stores a set of variables. Data such as the coordinates of the
+airfoil profile or the current Reynolds number are stored in such blocks and
+may be accessed as long as the program is loaded into memory. New data may
+be freely added in this global storage by defining new common blocks. For
+the needs of the current application was added a block to hold the computed
+hydrodynamic coefficients for angles of attack between $\pm $20 degrees. In
+order to set the data the assignment statements that set the values of these
+coefficients must have been inserted in the proper place in the code (the
+code is located in EXEC\_OPER\_COMMAND a modified version of OPER subroutine
+which implemented a lower-lever menu which among others provides the options
+to compute the hydrodynamic coefficients).The same approach was taken in the
+next iteration when implementing the customizations for the coefficient
+extraction interface.
+
+{\bf Linking Fortran and C++ code.} In order to link the code written in XFOIL with the rest of the application
+we need to create C++ language bindings. By bindings we mean a set of
+functions that call the functions defined in the other language, extract
+data from global storage, etc. In the case of our application the bindings
+also must provide a simplified and restricted interface to XFOIL\ code that
+would make the whole module more usable by the rest of the application code.
+
+Linking C++ with Fortran code required the knowledge of the following
+typical mixed-language programming topics:
+
+\begin{enumerate}[topsep=5pt, partopsep=0pt,itemsep=3pt,parsep=1pt]
+\item Name mangling;
+\item Calling conventions used in both languages;
+\item Specifics of parameter passing (is the parameter passed by value or
+reference, is the length of the array passed implicitly or not);
+\item Primitive data type mappings (how similar data types are represented
+in memory, how are represented language specific data types, e.g. LOGICAL
+data type in Fortran);
+\item How to represent language specific constructs (e.g. how to represent
+common blocks in C++ language).
+\end{enumerate}
+
+If these aspects are not studied and handled properly the end-result usually
+manifests itself as a severe run-time error. A standard Fortran subroutine
+passes the parameters by address and has \textit{\_\_stdcall} calling
+convention. Name mangling can be handled by specifying additional compiler
+options or by declaring (in the binding code) the called functions with
+additional decoration symbols such as underscores (unless the mangling
+scheme is complex or results in invalid identifiers). A\ common block in
+Fortran maps to the declaration of a data structure in C++ with the same
+order of variables as declared in Fortran code, the common block itself is
+represented by an instance of the data structure with the same name as the
+common block in Fortran code. The listings \ref{list3} and \ref{list4} illustrate this
+mapping.
+
+\lstinputlisting[language=Fortran, caption={Common block declaration in Fortran}, label=list3]{../SrcCode/commonBlock.f}
+
+\lstinputlisting[language=C, caption={Common block declaration in C++}, label=list4]{../SrcCode/commonBlock.c}
+
+\subsubsection{C++ language bindings for XFOIL\ code}
+
+The class diagram shown in figure \ref{clsBindings1} shows the structural relationships between the concepts defined in the code
+that links to XFOIL program. In order to model C functions and structures
+using UML the approach described in \cite{CwithUML} is used. The idea is to model a file containing C language code as a class
+stereotyped with $<<$File$<<$. As additional information we added a tagged value indicating in which
+language the file is written (on the diagram we have files written in C++
+and Fortran languages). The functions and variables defined in a file
+represent the attributes and methods of the class. The visibility of
+attributes and methods can be either public or private. Public members
+represent code and data that is visible outside the file, that is functions
+and global variables declared in header files. On the other hand private
+members are functions and data inaccessible outside the file (functions and
+variables declared with \textit{static} modifier). The simplified interface
+to XFOIL code is represented by the set of public methods in the \textit{%
+exports} class. The relationships between classes are mostly dependencies
+stereotyped as $<<$call$>>$ and are used to indicate the files that contain functions that depend on
+functions defined in other files. We can also see associations going from 
+\textit{xfoil\_data\_structures} to C++ data structures declared in that
+file. The structures represent the C++ language equivalent of common blocks
+in Fortran from which functions defined in \textit{exports} later will
+extract data such as the coordinates of the airfoil, the values of the
+hydrodynamic coefficients, etc. or set the data in those common blocks. On
+the diagram are shown only the fields from the common blocks which are used
+by the binding module. Next will be described the usage of each common block
+in the context of our application:
+
+\begin{enumerate}[topsep=5pt, partopsep=0pt,itemsep=3pt,parsep=1pt]
+\item CI01 - stores the length of the airfoil identifier string;
+
+\item CC01 - stores the airfoil identifier;
+
+\item CR05 - stores the airfoil coordinates;
+
+\item CL01 - stores flags set by XFOIL code (\textit{lvisc} - used to
+determine if the viscous solution should be computed, \textit{lnorm} - if
+the airfoil should be normalized [its chord must have unit length], \textit{%
+lvconv} - if the viscous solution converged for a given angle of attack);
+
+\item CI04 - stores various integer variables among which the number of
+points on the current airfoil (\textit{n}), maximal number of Netwon
+iterations to be performed before convergence is not attained (\textit{itmax}%
+) and the maximal number of points for which the solution may not converge (%
+\textit{nseqex});
+
+\item MYDATA - the common block added to XFOIL code that is used to store
+the hydrodynamic coefficients for angles of attack between $\pm $20 degrees.
+The block also contains an indicator set by XFOIL code to signal a file
+error in the routine for the extraction of airfoil coordinates from a file.
+\end{enumerate}
+
+To illustrate how the interface simplifies the access to XFOIL\ code lets
+show an example of an actual sequence of function calls. The sequential
+diagram is shown in figure \ref{sqCbindings1}. The diagram illustrates how the client module sets and gets the
+coordinates of an airfoil. The client calls the method \textit{setAirfoil()}
+to generate/read the coordinates of the airfoil and then store them in 
+\textit{CR05} block. The airfoil specifier could be either a file name or a
+NACA\ specifier. It is the responsiblity of the function to determine the
+type of specifier and what XFOIL command to generate. The function that
+simulates user input is called \textit{xfoil\_exec.} The function takes as
+parameters the command name and the argument(s). Because the client could
+request an option from 3 different XFOIL\ menus (top level menu, panel
+manipulation menu or airfoil analysis menu) we delegate the responsibility
+for determing the type of menu to code written in \textit{xfoil\_commands}
+file, namely to function \textit{type\_of\_command}. The module contains a
+set of arrays that stores the subset of XFOIL commands used by the
+application. The returned identifier is used to select the function which
+dispatches the command to the appropriate XFOIL menu. Note that passing
+strings to Fortran requires passing also the length of the string (which is
+done implicitly in Fortran code). If the airfoil wasn't generated (for
+example if the file with airfoil coordinates could not be read) the function
+returns a failure indicator value, otherwise it continues by sending the
+commands to discretize the profile with the number of panels specified by
+the client code as a second parameter to \textit{setAirfoil()} function. The
+details of dispatching those commands where not included in the diagram
+since they generate the same sequence of calls as in the case when first
+command was sent. After receiving a success indicator value, the client
+could extract the arrays containing the airfoil coordinates by calling 
+\textit{getAirfoil()} function. The coordinates of the airfoil are extracted
+from \textit{CR05} common block.
+
+\begin{sidewaysfigure}[!ht]
+\centering
+\includegraphics[scale=0.45]{clsBindings1}
+\caption{C++ language bindings -- static view}\label{clsBindings1}
+\end{sidewaysfigure}
+
+\clearpage
+
+\begin{sidewaysfigure}[!ht]
+\centering
+\includegraphics[scale=0.75]{sqCbindings1}
+\caption{Setting and extracting airfoil coordinates}\label{sqCbindings1}
+\end{sidewaysfigure}
+
+\clearpage
