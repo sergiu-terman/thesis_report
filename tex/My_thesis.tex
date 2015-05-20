@@ -1,4 +1,4 @@
-\Documentclass1[12pt,a4paper,titlepage]{article}
+\documentclass[12pt,a4paper,titlepage]{article}
 \usepackage{License_style}
 
 % the document should be compiled with pdfLaTex
@@ -6,6 +6,10 @@
 \begin{document}
 
 \numberwithin{lstlisting}{section}
+
+
+\phantomsection
+
 
 
 \tableofcontents
@@ -17,19 +21,16 @@
 \addcontentsline{toc}{section}{List of figures}
 \clearpage
 
-%LISTA TABELELOR. Este recomandabila daca in text ai peste cel putin 10-15 tabele
-\listoftables
-\addcontentsline{toc}{section}{List of tables}
-\clearpage
-
 \lstlistoflistings
 \addcontentsline{toc}{section}{Listings}
+\thispagestyle{empty}
 \clearpage
 
-%ABREVIERI. Este recomandabila doar daca utilizezi in text peste 10-15 abrevieri
+% ABREVIERI. Este recomandabila doar daca utilizezi in text peste 10-15 abrevieri
 \phantomsection
 \addcontentsline{toc}{section}{Abbreviations}
 \input{Abbreviations.tex}
+\thispagestyle{empty}
 \cleardoublepage
 
 %INTRODUCERE
@@ -72,10 +73,5 @@
 \cleardoublepage
    
 \phantomsection
-%\setcounter{page}{235}
-\addcontentsline{toc}{section}{Appendix}
-\input{Appendix.tex}
-\cleardoublepage
- 
- 
+
 \end{document}
