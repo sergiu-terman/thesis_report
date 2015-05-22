@@ -1,5 +1,470 @@
-\section{Economical Part}
+\section{Economic Analysis}\label{sec:economy}
 \phantomsection
 
+\subsection{Project description}
+For the last decades the amount of generated data is raising exponentially. This phenomena is caused by the increased number of data sources provided by devices, sensors, log files etc. As a result there are tremendous amounts of data which can be explored and used for deducting useful information. There are various fields which profit from Big Data analysis, such as marketing, business, pharmaceutical, social science, fraud detection. Another interesting application of Data Mining is journalism. The combination of theses two caused the emergence of Data Journalism concept.
 
+OpenMedia project is a platform for data journalism which is based on a wide range of available articles published using online sources. Data Journalism is widely used by the top newspapers reporters for deducing and writing a good article. Unfortunately data journalism is not practice in Republic of Moldova, thus it gives the project OpenMedia an upper hand by being first in this market. Also because the field is well explored by well developed countries, it provides a good source of examples. If a such a platform will exist on the local market, journalists would be able to write well documented articles on interesting and spicy topics. Hence offering a richer source of good articles to read. More than that OpenMedia provides a set of well defined visualization tools which can be used by business analysts, for better targeting the market and improving the CRM. From this perspective is it clear why a visualization tool is needed. It can be used by a wide range of people, but mostly targeting the journalist and business analysts.
+
+Being a web application it will offer the flexibility of cross-platform advantages. Users from different fields would be able to construct their own statistical results for helping doing their job better.
+
+\subsection{Project time schedule}
+For the accomplishment of a project it is necessary to establish a schedule. For the development of the OpenMedia application, agile project management is applied to offer flexible and iterative method of designing the application. It goes in 5 stages: planning, research, development, testing and deployment. The steps are repetitive and incremental.
+
+\subsubsection{Objective determination}
+The main objective of the following project is to provide a complete and functioning application for data journalism. Otherwise without a finished product there is no profit. More to that, it is important to market the application and get exposed to a large audience in need. This can be done by targeting first the journalism companies like Unimedea, Publika, JurnalTV. Another way is to market oneself on platform-specific stores. Since it is not a common piece of software, it creates a very specific audience of users. 
+
+To keep up with the latest trends and researches, it is also an essential objective to keep updated and provide enhancements to the software. The lifecycle of the application will require bugfixes, interface changes, feature implementations. All of that will help the system still be trendy and up-to-date on the market.
+
+\subsubsection{Time schedule establishment}
+As it was said above the project will iterate over 5 steps: planning, research, development, testing and deployment. Naturally as most of the IT projects, it is subdivided into smaller parts. Planning step isn't supposed take up a lot of time, since the requirements are flexible. Moreover due to the research part the design solutions can change over time and open up new perspectives. The process of development is being split up in smaller tasks that can be accomplished within a 2-5 day period. Total duration of the project is computed using \eqref{eq:duration}.
+
+\begin{equation} \label{eq:duration}
+ D_T = D_F - D_S + T_R,
+\end{equation}
+
+\noindent
+where $D_T$ is the duration, $D_F$ -- the finish date, $D_S$ -- the start date and $T_R$ -- reserve time. In table \ref{table:schedule} is presented the first iteration of the project schedule. It uses the following notations: PM -- project manager, SA -- system architect, SM -- sales manager, D -- developer.
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Time schedule}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| c | >{\centering\arraybackslash}p{5cm} | >{\centering\arraybackslash}p{2cm} | c | >{\centering\arraybackslash}p{5cm} |}
+\hline
+\textbf{Nr} & \textbf{Activity Name} & \textbf{Duration (days)} & \textbf{People involved} & \textbf{Comments} \\
+\hline
+1 & Define the project concept and objectives & 5 & PM, SA, SM, D & It is a common task \\
+\hline
+2 & Perform market analysis & 10 & PM, SA & Will results into a document describing market analysis \\
+\hline
+3 & Analysis of the domain & 15 & SA, D & Research of the recognition algorithms \\
+\hline
+4 & Write down requirements and specifications & 5 & PM, SA, D & \\
+\hline
+5 & System design (UML) & 10 & PM, SA, D & \\
+\hline
+6 & Database design & 5 & PM, SA, D & Development database and end-user database schemes\\
+\hline
+7 & Preprocessing and learning part of the implementation & 30 & PM, SA, D & \\
+\hline
+8 & End-user application development & 20 & PM, SA, D, SM & \\
+\hline
+9 & Validation of results & 10 & PM, SA, D, SM & \\
+\hline
+10 & Documentation & 5 & D & \\
+\hline
+11 & Deployment and testing & 10 & PM, SA, D & \\
+\hline
+12 & Active marketing & 10 & SM & \\
+\hline
+13 & Total time to finish the system & 135 & & \\
+\hline
+\end{tabular}
+\label{table:schedule}
+\end{center}
+\end{table}
+
+Table \ref{table:schedule} describes the activities that will occur during project development, who is involved into each process and how much time does it take to accomplish a task. Total amount of time spent on the following project is 135 days.
+
+\subsection{Economic motivation}
+The following section describes the evaluation of the project from the economic point of view. That includes the total profit, number of potential clients, salaries that have to be paid to employees, revenues that the company gets by commercializing the product. All the costs and prices are given in MDL (Moldavian lei) currency. Tangible and intangible assets, indirect expenses will also be taken into account. Wear and depression in regard to final product will also be computed.
+
+\addtocontents{toc}{\protect\newpage}
+\subsubsection{Tangible and intangible asset expenses}
+The budget for the required tangible and intangible assets is shown in Table \ref{table:tangible_assets}, Table \ref{table:intangible_assets}. Direct expenses are presented in Table \ref{table:direct_expenses}.
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Tangible asset expenses}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| c | c | >{\centering\arraybackslash}p{2.7cm} | >{\centering\arraybackslash}p{2cm} | c | >{\centering\arraybackslash}p{5em}|}
+\hline
+\textbf{Material} & \textbf{Specification} & \textbf{Measurement unit} & \textbf{Price per unit (MDL)} & \textbf{Quantity} & \textbf{Sum (MDL)}\\
+\hline
+Mac Book pro & retina display i5 & Unit & 23000 & 1 &  \multicolumn{1}{r|}{23000}\\
+\hline
+Smartphone & Nexus 5 & Unit & 8000 & 1 & \multicolumn{1}{r|}{8000}\\
+\hline
+\multicolumn{5}{|r|}{Total} & \multicolumn{1}{r|}{31000}\\
+\hline
+\end{tabular}
+\label{table:tangible_assets}
+\end{center}
+\end{table}
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Intangible asset expenses}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| c | >{\centering\arraybackslash}p{5cm} | >{\centering\arraybackslash}p{2.7cm} | >{\centering\arraybackslash}p{2cm} | c | >{\centering\arraybackslash}p{5em}|}
+\hline
+\textbf{Material} & \textbf{Specification} & \textbf{Measurement unit} & \textbf{Price per unit (MDL)} & \textbf{Quantity} & \textbf{Sum (MDL)} \\
+\hline
+License & Enterprise Architect Desktop Edition License & Unit & 1900 & 3 & \multicolumn{1}{r|}{5700} \\
+\hline
+License & RubyMine Commercial License & Unit & 2800 & 3 & \multicolumn{1}{r|}{8400}\\
+\hline
+\multicolumn{5}{|r|}{Total} & \multicolumn{1}{r|}{14100}\\
+\hline
+\end{tabular}
+\label{table:intangible_assets}
+\end{center}
+\end{table}
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Direct expenses}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{5em} | r |}
+\hline
+\textbf{Material} & \textbf{Specification} & \textbf{Measurement unit} & \textbf{Price per unit (MDL)} & \textbf{Quantity} & \multicolumn{1}{>{\centering\arraybackslash}p{5em}|}{\textbf{Sum (MDL)}}\\
+\hline
+Whiteboard & Universal Dry Erase Board & Unit & 500 & 1 & 500 \\
+\hline
+Paper & A4 & 500 sheets & 60 & 2 & 120 \\
+\hline
+Marker & Whiteboard marker & Unit & 15 & 10 & 150 \\
+\hline
+Pen & Blue pen & Unit & 5 & 20 & 100 \\
+\hline
+\multicolumn{5}{|r|}{Total} & 870 \\
+\hline
+\end{tabular}
+\label{table:direct_expenses}
+\end{center}
+\end{table}
+
+\newpage
+So the total amount of direct expenses in MDL is
+
+\begin{equation}
+ T_{e} = 31000 + 14100 + 870 = 45970
+\end{equation}
+
+\subsubsection{Salary expenses}
+The employees obviously should be paid accordingly. Hence this section is concerned about the salaries to employees and various funds that should be paid. The distribution of salaries is the following:
+
+\begin{itemize}[topsep=5pt, partopsep=0pt,itemsep=3pt,parsep=1pt]
+ \item project manager -- 400 MDL
+ \item system architect -- 450 MDL
+ \item sales manager -- 300 MDL
+ \item developer -- 380 MDL
+\end{itemize}
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Salary expenses}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| >{\centering\arraybackslash}p{8em} | >{\centering\arraybackslash}p{8em} | >{\centering\arraybackslash}p{8em} | r |}
+\hline
+\textbf{Employee} & \textbf{Work fund (days)} & \textbf{Salary per day (MDL)} & \multicolumn{1}{>{\centering\arraybackslash}p{5em}|}{\textbf{Salary fund (MDL)}}\\
+\hline
+Project Manager & 105 & 400 & 42000 \\
+\hline 
+System Architect & 110 & 450 & 49500\\
+\hline
+Sales Manager & 45 & 300 & 13500\\
+\hline
+Developer & 115 & 380 & 43700\\
+\hline
+\multicolumn{3}{|r|}{Total} & 148700\\
+\hline
+\end{tabular}
+\label{table:salaries}
+\end{center}
+\end{table}
+
+Now by having computed all the salaries for the employees, it is time to compute how much to be paid to social services fund, medical insurance fund and the total work expenses by summing up all previous expenses. 
+
+Salary expenses are introduces in Table \ref{table:salaries}.
+
+This year the social service fund is approved to be $23\%$, therefore the salary expenses are computed according to the relation \eqref{eq:fs}.
+
+\begin{equation}\label{eq:fs}
+\begin{split}
+ FS &= F_{re} \cdot T_{fs} \\
+    &= 148700 \cdot 23 \% \\
+    &= 34201,
+\end{split}
+\end{equation}
+\noindent
+where $FS$ is the salary expense, $F_{re}$ is the salary expense fund and $T_{fs}$ is the social service tax approved each year. The medical insurance fund is computed as
+
+\begin{equation}
+\begin{split}
+ MI &= F_{re} \cdot T_{mi}\\ 
+    &= 148700 \cdot 4.5\%\\ 
+    &= 5948,
+ \end{split}
+\end{equation}
+
+\noindent
+where $T_{mi}$ is the mandatory medical insurance tax approved each year by law of medical insurance and this year it is $3.5\%$. 
+
+So now having computed social service tax and medical insurance tax, it is possible to compute total work expense fund as follows
+
+\begin{equation}
+\begin{split}
+ WEF &= F_{re} + FS + MI\\
+     &= 148700 + 34201 + 5948\\
+     &= 188849,
+\end{split}
+\end{equation}
+
+\noindent
+where $WEF$ is the work expense fund, FS is the social fund and MI is the medical insurance fund. In that way the total work expense fund was computed.
+
+
+\subsection{Individual person salary}
+Along with total work expense fund, it is necessary to compute the annual salary for the developer. Considering that the developer has a salary of 380 MDL per day and there are totally 250 working days in the year, so the gross salary that the developer get is
+
+\begin{equation}
+ GS = 380 \cdot 250 = 95000,
+\end{equation}
+
+\noindent where $GS$ is the gross salary computed in MDL.
+
+Social fund tax this year represents $6\%$, so the amount that should be tax paid in MDL represents
+
+\begin{equation}
+ SF = 95000 \cdot 6\% = 5700.
+\end{equation}
+
+Medical insurance tax represents $4.5\%$ and gives the following result
+
+\begin{equation}
+ MIF = 95000 \cdot 4.5\% = 4725.
+\end{equation}
+
+In order to proceed with income tax computations, it is necessary to calculate the amount of taxed salary.
+
+\begin{equation}
+\begin{split}
+ TS &= GS - SF - MIF - PE \\
+              &= 95000 - 5700 - 4725 - 10128\\ 
+              &= 74447,
+\end{split}
+\end{equation}
+
+\noindent
+where $TS$ is the taxed salary, $GS$ -- gross salary, $SF$ -- social fund, $PE$ -- personal exemption, which this year is approved to be $10128$.
+
+The last but not the least thing to be computed is the total income tax, which is $7\%$ for income under 29640 MDL and $18\%$ for income over 29640 MDL.
+
+\begin{equation}
+\begin{split}
+ IT &= TS - ST \\
+      &= 29640 \cdot 7\% + (74447 - 29640) \cdot 18\% \\
+      & = 2074.8 + 8065.3 = 10140.1,
+ \end{split}
+\end{equation}
+
+\noindent
+where $IT$ is the income tax, $TS$ -- the taxed salary and $ST$ -- the salary tax. With all this now it is possible to find out what's going to be the net income.
+
+\begin{equation}
+\begin{split}
+ NS &= GS - IT - SF - MIF \\
+            &= 95000 - 10140.1 - 5700 - 4725 \\
+            &= 74434.9,
+\end{split}
+\end{equation}
+
+\noindent
+where $NS$ is the net salary, $GS$ -- gross salary, $IT$ -- income tax, $SF$ -- social fund, $MIF$ -- medical insurance fund.
+
+\subsubsection{Indirect expenses}
+The indirect expenses are things like electricity, Internet traffic, water, etc. Those will be presented in Table \ref{table:indirect_expenses}.
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Indirect expenses}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{7em} | >{\centering\arraybackslash}p{5em} | >{\centering\arraybackslash}p{5em} | r |}
+\hline
+\textbf{Material} & \textbf{Specification} & \textbf{Measurement unit} & \textbf{Price per unit (MDL)} & \textbf{Quantity} & \multicolumn{1}{>{\centering\arraybackslash}p{4em}|}{\textbf{Sum (MDL)}}\\
+\hline
+Internet & Moldtelecom & Pack & 200.00 & 3 & 600 \\
+\hline
+Transport & Public bus & Trip & 3.00 & 132 & 396\\
+\hline
+Phone & Moldtelecom & Pack & 30.00 & 3 & 90\\
+\hline
+Electricity & Union Fenosa & KWh & 1.58 & 250 & 395\\
+\hline
+\multicolumn{5}{|r|}{Total} & 1481 \\
+\hline
+\end{tabular}
+\label{table:indirect_expenses}
+\end{center}
+\end{table}
+
+\subsubsection{Wear and depreciation}
+Another important part of economic analysis is the computation of wear and depreciation. It is a well known fact that any product decreases its value with time. Depression will be computed uniformly for the whole project duration, so that there are no accountancy issues. In other words, if a product is planned for 3 years, it should be divided into 3 uniform parts according to each year. 
+
+Straight line depreciation will be applied. Normally wear is computed regarding to the type of asset. The notebook and single-board computer are usable for a period of 3 years. Licenses will last for a single year. At first tangible and intangible assets are summed up and then the salvage costs of each of the items at the end of their period of use has to be subtracted:
+
+\begin{equation}
+ \begin{split}
+  TAV &= \sum_{} (AC - SV) \\
+        &= (23000 - 1000) + (8000 - 1000) + (5700 - 1000) + (8400 - 1000) \\
+        &= 41100,
+ \end{split}
+\end{equation}
+
+\noindent
+where $TAV$ is the total assets value, $AC$ -- assets cost, $SV$ -- salvage value. In order to get the yearly wear, divide total asset value by the period of use of assets, being 3 years.
+
+\begin{equation} \label{eq:wear}
+ \begin{split}
+  W_y &= TAV / T_{use} \\
+                &= 41100/3\\
+                &= 13700,
+ \end{split}
+\end{equation}
+
+\noindent
+where $W_y$ is the wear per year, $TAV$ -- total assets value, $T_{use}$ -- period of use. Relation \eqref{eq:wear} included tangible assets which will last for 3 years and intangible assets which last only one year. The initial value of assets in MDL was
+
+\begin{equation}
+ \begin{split}
+  W &= W_y / D_y \cdot T_p\\
+                   &= 13700  / 365  \cdot 135 \\
+                   &= 5067,
+ \end{split}
+\end{equation}
+
+\subsubsection{Product cost}
+With all the project expenses computed, it is easy to compute the product cost which includes direct and indirect expenses, salary expenses and wear expenses as shown in Table \ref{table:product_cost}.
+
+\begin{table}[!ht]
+\begin{center}
+\caption{Total Product Cost}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| >{\centering\arraybackslash}p{10em} | r | r |}
+\hline
+\textbf{Expense type} & \multicolumn{1}{>{\centering\arraybackslash}p{6em}|}{\textbf{Sum (MDL)}} & \multicolumn{1}{>{\centering\arraybackslash}p{6em}|}{\textbf{Percentage (\%)}}\\
+\hline
+Direct expenses & 14100 & 7 \\
+\hline
+Indirect expenses & 870 & 0.44 \\
+\hline
+Tangible asset expenses & 31000 & 15.52\\
+\hline
+Salary expenses & 148700 & 74.45 \\
+\hline
+Asset wear expenses & 5067 & 2.53 \\
+\hline
+\textbf{Total product cost} & \textbf{199737} & \textbf{100}\\
+\hline
+\end{tabular}
+\label{table:product_cost}
+\end{center}
+\end{table}
+
+
+\subsubsection{Economic indicators and results}
+At this point it is crucial to sell the product to clients from from media or business sphere. The total product cost is very high, consequently there are 2 strategies that can be applied -- whether sell less with a high price or sell more with a lower price. It is not possible to add a percentage to the product cost that will represent the profit. It is assumed that the expected profit represents $20\%$ of the total product cost and the expected number of sold copies to be 500.
+
+\begin{equation}
+ \begin{split}
+  GP &= C_{total} / N_{cs} + P_{p}\\
+              &= 199737/500 + 20\% \\
+              &= 480,
+ \end{split}
+\end{equation}
+
+\noindent
+where $GP$ is the gross price, $C_{total}$ -- total product cost, $N_{cs}$ -- number of copies sold, $P_{p}$ -- chosen profit percentage. This is not the price of the end product, since it is necessary to add sales tax (VAT), which represents $20\%$ and is added to the gross price. 
+
+\begin{equation}
+ \begin{split}
+  P_{sale} &= GP + TX_{sales}\\
+              &= 480 + 20\% \\
+              &= 576,
+ \end{split}
+\end{equation}
+
+\noindent
+where $P_{sale}$ is the sale prices including VAT, $GP$ -- gross price, $TX_{sales}$ -- sales tax. The net income is computed by multiplying gross price and the number of expected copies to be sold, which will be
+
+\begin{equation}
+ \begin{split}
+  I_{net} &= GP \cdot N_{cs}\\
+              &= 480  \cdot 500 \\
+              &= 240000,
+ \end{split}
+\end{equation}
+
+\noindent
+where $I_{net}$ is the net income, $GP$ -- gross price, $N_{cs}$ -- number of copies sold. Moreover it is necessary to compute the gross and net profit. The indicators are $GPr$ -- gross profit and $NPr$ -- net profit.
+
+\begin{equation}
+ \begin{split}
+  GPr &= I_{net} - C_{production}\\
+              &= 240000 - 199737\\
+              &= 40263\\
+  NPr &= GPr - 12\% \\
+             &= 40263 - 12\% \\
+             &= 35431.44,
+ \end{split}
+\end{equation}
+
+\noindent
+where $I_{net}$ is the net income, $C_{production}$ -- cost of production. The profitability indicators are $C_{profit}$ -- cost profitability, $S_{profit}$ -- sales profitability computed in MDL.
+
+\begin{equation}
+ \begin{split}
+  C_{profit} &= GPr / C_{production} \cdot 100\%\\
+              &= 40263 / 199737 \cdot 100\% \\
+              &= 20.15 \%\\
+  S_{profit} &= GPr / I_{net} \cdot 100\% \\
+             &= 40263 / 240000 \cdot 100\% \\
+             &= 16.77 \%.
+ \end{split}
+\end{equation}
+
+\subsection{Marketing Plan}
+Concept of Marketing derived from the word market. Marketing - economical activities that guide flow of goods and services from producer to consumer.  Marketing is a system of economical activities about price setting, promotion and distribution of products and services to satisfy current and potential consumers requests. Marketing is the science and art of exploring, creating, and delivering value to satisfy the needs of a target market at a profit.
+
+ Functions of Marketing:
+ \begin{itemize}
+ \item Analyzing of external environment
+ \item Analyzing consumers behavior
+ \item Development of product
+ \item Development of distribution
+ \item Development of promotion
+ \item Price setting
+ \item Social responsibility
+ \item Management marketing
+\end{itemize}
+
+This application will be widely spread between journalists and business analysts. To make people use a new application is not so easy because it needs time and investment to make it popular and well known. First of all the application will be easy to use so that an ordinary browser user will be able to intuitively use the application.
+
+Market research stages
+\begin{itemize}
+ \item Identifying the problem:
+ \item Developing program of research and gathering
+information
+ \item Establishing specific information ( internal, external )
+ \item Establishing methods for collecting data
+ \item Performance of research
+ \item Information analysis, drawing conclusions
+\end{itemize}
+
+Introduction stage This stage of the cycle could be the most expensive for a company launching a new product. The size of the market for the product is small, which means sales are low, although they will be increasing. On the other hand, the cost of things like research and development, consumer testing, and the marketing needed to launch the product can be very high, especially if it's a competitive sector.
+
+Strategy - Screaming, massive penetration The growth stage is typically characterized by a strong growth in sales and profits, and because the company can start to benefit from economies of scale in production, the profit margins, as well as the overall amount of profit, will increase. This makes it possible for businesses to invest more money in the promotional activity to maximize the potential of this growth stage.
+
+Maturity Stage - During the maturity stage, the product is established and the aim for the manufacturer is now to maintain the market share they have built up. This is probably the most competitive time for most products and businesses need to invest wisely in any marketing they undertake. They also need to consider any product modifications or improvements to the production process which might give them a competitive advantage.
+
+Declining stage - the market for a product will start to shrink, and this is what's known as the decline stage. This shrinkage could be due to the market becoming saturated (i.e. all the customers who will buy the product have already purchased it), or because the consumers are switching to a different type of product.
+
+
+\subsection{Economic conclusions}
+OpenMedia project was analyzed from the economic point of view. It was computed the production cost, different profit and profitability indicators, various types of expenses involved, including direct, indirect, salary and taxes. The whole analysis is worth to understand if the product will be successful and if it's worth investing money in it. The biggest expense represents the intellectual equity, since it is critical to have a reliable product, which is based on extensive research and professional development techniques. The price of the application can become a blocker, therefore it's price might be dropped. In such scenario other means
+of profit can be introduced, for example in-app advertisement.
+
+The commercialization of the product is not an easy task. Especially when the product is open sourced. Nevertheless high-quality service and customer support can be provided only to institutions and users that bought the product. The success of the product highly depends on financial strategy and solid economic analysis, which was presented in this chapter.
 \clearpage
