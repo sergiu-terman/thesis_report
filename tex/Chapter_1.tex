@@ -8,22 +8,22 @@ The platform OpenMedia is a rather complex system consisting from several parts.
 The project OpenMedia is a platform used to provide visual models and statistic result based on online media sources from Republic of Moldova. It aims to collect the available articles found on the public sources and use them as a generic source for extracting useful results to be provided to visualization tools. The features offered by OpenMedia will be tools for querying for the desired keywords, in order to construct frequency plots, with options to see to what sources it belongs to. Also it will bring trend detection utilities. By selecting a range of time, it will render the most mentioned terms, and construct bar charts thus communicating the relevance of the popularity.
 
 The platform will consist from two major parts.
-\begin{itemize}
-    \item Data gathering platform
+\begin{enumerate}
+    \item Data gathering platform;
     \begin{itemize}
-        \item Fetching the article pages
-        \item Extracting the article
-        \item Storing the article
-        \item Enriching with textual metadata
+        \item Fetching the article pages;
+        \item Extracting the article;
+        \item Storing the article;
+        \item Enriching with textual metadata.
     \end{itemize}
-    \item Web Client platform
+    \item Web Client platform.
     \begin{itemize}
-        \item A simple and intuitive design
-        \item Launching asynchronous tasks
-        \item Receiving the finished
-        \item Visualization of results
+        \item A simple and intuitive design;
+        \item Launching asynchronous tasks;
+        \item Receiving the finished;
+        \item Visualization of results.
     \end{itemize}
-\end{itemize}
+\end{enumerate}
 
 \subsubsection{Data gathering platform}
 This part of the application is focused on gathering data, cleaning and baking it. Simply put, all the heavy lifting of textual data preprocessing is done by this part of the platform. In the figure \ref{data_gathering_mock} is mocked the activity layers of the application. It is important to deliver the data in a format easily operable by the application because the amount of data analysis tricks becomes more various. To be more specific, it is up to client platform to choose the techniques of data consumption. On the one hand it does not sound as an optimized solution but on the other hand it offers flexibility. Data collection is a long and tedious process, that is why it should be better run once. More than that it is advised that all the data changes should be managed in a separate copy. Keeping each stage of data in an immutable state is a wise move. Redundancy is a better choice due to the fact that a project is prone to changes. Running the entire gathering operation from the bottom just in order to add a new feature sounds lethal to a business solution. That is why the OpenMedia platform saves each stage of data.
@@ -38,11 +38,12 @@ The articles used by the platform are the public sources of the online media of 
 
 \subsubsection{Web Client platform}
 The client side will represent a web application, a minimalistic layer used for communication between user and the platform. Having a web infrastructure offers the opportunity to make the application easy to access. The only requirement being a modern web browser like Google Chrome, Firefox etc. The focus of the application is to make available the following functionalities.
+\clearpage
 \begin{itemize}
-    \item execute queries on specified words
-    \item execute trend detection queries on specified date rang
-    \item display frequency line charts
-    \item display trends popularity bar charts
+    \item execute queries on specified words;
+    \item execute trend detection queries on specified date rang;
+    \item display frequency line charts;
+    \item display trends popularity bar charts.
 \end{itemize}
 
 This are the basic functionalities provided by the client application. Of course here are also included details such as specifying the media resource, in order to be able to compare the results and extract some useful conclusions from it. The goal is to make the user experience as natural as possible. And due to the fact that he number of functionalities are not so various, creating a natural flow of events will not represent an essential problem. But it should be taken into consideration that a reduced amount of functionalities does not mean a reduced amount of operations. The whole sequence of events is rather complex. It will be described step by step in the next pages of the report.
@@ -84,25 +85,22 @@ What developers decided was to loosen up one of the ACID principle and create ne
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=10cm]{1_cap}
+\includegraphics[width=17cm]{1_cap}
 \caption{CAP Theory}\label{cap}
 \end{figure}
 
 Along with the implementation of conceptual new database the term NoSQL started to spread. The term came from the fact that the new databases were not using SQL for data management. In reality there are more types of conceptual database, and covering all of them under the same umbrella seems too ambiguous.
 the most widely used types of databases, not considering RDBMS, are described bellow.
 
-\paragraph{Document Based Database}
-The central concept of a document-oriented database are the documents, which is used in usual English sense of a group of data that encodes some sort of user-readable information. This contrasts with the value in the key-value store, which is assumed to be opaque data. The basic concept that makes a database document-oriented as opposed to key-value is the idea that the documents include internal structure, or metadata, that the database engine can use to further automate the storage and provide more value.
+\textbf{Document Based Database} is a new approach of database management. It is used in usual English sense of a group of data that encodes some sort of user-readable information. This contrasts with the value in the key-value store, which is assumed to be opaque data. The basic concept that makes a database document-oriented as opposed to key-value is the idea that the documents include internal structure, or metadata, that the database engine can use to further automate the storage and provide more value.
 
 Document databases contrast strongly with the traditional relational database (RDBMS). Relational databases are strongly typed during database creation, and store repeated data in separate tables that are defined by the programmer. In an RDBMS, every instance of data has the same format as every other, and changing that format is generally difficult. Document databases get their type information from the data itself, normally store all related information together, and allow every instance of data to be different from any other. This makes them more flexible in dealing with change and optional values, maps more easily into program objects, and often reduces database size. This makes them attractive for programming modern web applications, which are subject to continual change in place, and speed of deployment is an important issue. The current most popular implementation of such type of database is MongoDB, CouchDB.
 
-\paragraph{Column Based Database}
-A column-oriented DBMS is a database management system that stores data tables as sections of columns of data rather than as rows of data. In comparison, most relational DBMSs store data in rows. This column-oriented DBMS has advantages for data warehouses, customer relationship management systems, and library card catalogs, and other ad hoc inquiry systems where aggregates are computed over large numbers of similar data items.
+\textbf{Column Based Database} is a database management system that stores data tables as sections of columns of data rather than as rows of data. In comparison, most relational DBMSs store data in rows. This column-oriented DBMS has advantages for data warehouses, customer relationship management systems, and library card catalogs, and other ad hoc inquiry systems where aggregates are computed over large numbers of similar data items.
 
 It is possible to achieve some of the benefits of column-oriented and row-oriented organization with any DBMSs. Denoting one as column-oriented refers to both the ease of expression of a column-oriented structure and the focus on optimizations for column-oriented workloads. This approach is in contrast to row-oriented or row store databases and with correlation databases, which use a value-based storage structure \cite{wiki_column_based_db}. Such type of database implementations are BigTable, Casandra, DynamoDB.
 
-\paragraph{Key Value Database}
-Key-value stores use the associative array (also known as a map or dictionary) as their fundamental data model. In this model, data is represented as a collection of key-value pairs, such that each possible key appears at most once in the collection.
+\textbf{Key Value Database} use the associative array (also known as a map or dictionary) as their fundamental data model. In this model, data is represented as a collection of key-value pairs, such that each possible key appears at most once in the collection.
 
 The key-value model is one of the simplest non-trivial data models, and richer data models are often implemented on top of it. The key-value model can be extended to an ordered model that maintains keys in lexicographic order. This extension is powerful, in that it can efficiently process key ranges. Example of such type of database implementations are Redis, Memcache, Voldemort.
 
@@ -117,35 +115,28 @@ Data analytics and visualization are not new. For decades, businesses have colle
 
 Data can be represented in various way, it can have as many forms as a human brain can imagine. Even so there are already steady classical patterns for data visualization which are well known by common humans, and more important it is easy to read.
 
-\paragraph{Bar Charts}
-Simple bar charts are the most common form of data visualizations. Typically they only display different quantities of single variable data. However other variations, such as stacked bar charts or multi set bar charts can be used to compare multiple variables using bars.
+\begin{description}
+    \item Simple bar charts are the most common form of data visualizations. Typically they only display different quantities of single variable data. However other variations, such as stacked bar charts or multi set bar charts can be used to compare multiple variables using bars;
 
-\paragraph{Line Graphs}
-Line graphs are created by plotting points on a Cartesian grid, usually with the horizontal axis representing time. They are very powerful because without looking at the specific data, they show how a variable develops over time (from left to right).
+    \item Line graphs are created by plotting points on a Cartesian grid, usually with the horizontal axis representing time. They are very powerful because without looking at the specific data, they show how a variable develops over time (from left to right);
 
-\paragraph{Stacked area charts}
-Similar to line charts, however with the added value of filled areas. The data that is stacked adds up to a total of all variables combined. For example a business might use stacked area charts to visualize their total income, with each stacked area a different income channel.
+    \item Stacked area charts are similar to line charts, however with the added value of filled areas. The data that is stacked adds up to a total of all variables combined. For example a business might use stacked area charts to visualize their total income, with each stacked area a different income channel;
 
-\paragraph{Pie charts}
-Simple pie charts are the most common visual used to compare proportional data. They give viewers a very quick understanding of the distribution of the data. Pie charts are not useful when comparing many pieces of data with relatively close values.
+    \item Pie charts are the most common visual used to compare proportional data. They give viewers a very quick understanding of the distribution of the data. Pie charts are not useful when comparing many pieces of data with relatively close values;
 
-\paragraph{Ring charts}
-Similar to pie charts; ring charts are used to visualize the distribution of a data set. The advantage is they compare similar data sets. The alternative would be to place multiple pie charts next to each other, this can also be viewed as a space-saver.
 
-\paragraph{Scatterplots}
-They are created by plotting independent points on a Cartesian grid. Scatter plots are often used to find the relationship between data or to reveal information such as trends within the data which are not easily visible when in a table. Only works with two dimensional data.
+    \item Ring charts are used to visualize the distribution of a data set. The advantage is they compare similar data sets. The alternative would be to place multiple pie charts next to each other, this can also be viewed as a space-saver;
 
-\paragraph{Bubble charts}
-Similar to scatterplots; however, bubble charts display more dimensions of data by varying size (or also color, texture, etc) of the bubbles. It therefore can display multiple dimensions of data in a two dimensional display
+    \item Scatterplots are created by plotting independent points on a Cartesian grid. Scatter plots are often used to find the relationship between data or to reveal information such as trends within the data which are not easily visible when in a table. Only works with two dimensional data;
 
-\paragraph{Tree Diagrams}
-Tree diagrams are often used when wanting to represent the strict hierarchy of data. They are most often used to represent strict hierarchies such as family trees or how data is stored in a computer system.
+    \item Bubble charts display more dimensions of data by varying size (or also color, texture, etc) of the bubbles. It therefore can display multiple dimensions of data in a two dimensional display;
 
-\paragraph{Diagram maps}
-These visualizations are used to primarily represent the connections between different nodes or points. Their purpose is to show which points are connected to each other. Common examples of diagram maps are metro maps and social network visualizations.
+    \item Tree diagrams are often used when wanting to represent the strict hierarchy of data. They are most often used to represent strict hierarchies such as family trees or how data is stored in a computer system;
 
-\paragraph{Maps}
-Maps are used when the data is related to a specific location (for example a city, or country). The advantage is that their spatial representation directly relates to a real world situation. However at times can be difficult to read.
+    \item Diagram maps visualizations are used to primarily represent the connections between different nodes or points. Their purpose is to show which points are connected to each other. Common examples of diagram maps are metro maps and social network visualizations;
+
+    \item Maps are used when the data is related to a specific location (for example a city, or country). The advantage is that their spatial representation directly relates to a real world situation. However at times can be difficult to read.
+\end{description}
 
 \subsubsection{Modern Web Application}
 Web applications are heavily using HTTP protocol as means of transporting the data. The thing is that HTTP is a stateless protocol. For every request made by a client a TCP socket is opened. The HTTP server is receiving the request and handled by the application layer which does the response decision. When the response is sent back to the client, the TCP socket is closed and the transaction ends. The whole chain of events is repeated basically at every user interaction. In the result the web application is becoming a stateless application itself. At least that was valid until concept of Web 2.0 was introduced in 2004. Java Script started to become more popular because it gave the power to animate the pages and create a more humane UX. But the magic was behind the AJAX technology. The concept introduced by AJAX was making a web page run asynchronous requests and make live partially DOM changes. Developers could create web applications which did not require full page reload at while interacting with the page. Successfully implementation of this concepts are Facebook, Gmail, Twitter etc. AJAX, JQuery and other Java Script technologies brought web applications one step closer to the desktop applications experience.
@@ -156,11 +147,11 @@ Single page applications are distinguished by their ability to redraw any part o
 
 Here are enumerated a set of popular technologies which offers the possibility of building single page applications:
 \begin{itemize}
-    \item Ember
-    \item Angular
-    \item React (recently introduced by facebook)
-    \item Meteor
-    \item Marionette
+    \item Ember;
+    \item Angular;
+    \item React (recently introduced by facebook);
+    \item Meteor;
+    \item Marionette.
 \end{itemize}
 All this frameworks are built using Java Script languages, meaning that this is the right language for building modern web UX. Especially when so many communities were present which are eager to make the tools better, more easy to easy and scalable.
 
@@ -174,11 +165,11 @@ Due to the fact that single page applications are highly functions, they also in
 
 Until now everything discussed was related to building the front part of a modern web application. But a web application consist also from the backed part. The HTTP application which listens client requests. For building one there are a lot of frameworks which easily allows to scaffold a prototype. MVC based frameworks are powerful and provides lots of functionalities out of the box. And the good thing is that the majority of frameworks are mature and stable. Here are a list of frequently used solutions:
 \begin{itemize}
-    \item Ruby on Rails
-    \item Django
-    \item Spring
-    \item Symphony
-    \item ASP .NET
+    \item Ruby on Rails;
+    \item Django;
+    \item Spring;
+    \item ASP .NET;
+    \item Symphony.
 \end{itemize}
 The thing is that the mentioned technologies have huge stacks which sometimes are not needed when building a smaller application, or scalable one. Besides for building modern web applications where the client application is developed in a Java Script framework, means that the "V" (view) part from MVC is not needed anymore. Plus there are already on the market lightweight web technologies such as Sinatra, Flask, Node (in combination with express library). This type of application can serve just as good. In case if new module is required by the application, it can be easily added to the micro-framework stack. In ruby this is done by using gemfiles (gems are libraries in Ruby language) were gems can be easily added and installed effortlessly.
 
@@ -200,18 +191,17 @@ Building complex systems is not a simple task to do and usually they consist of 
 
 In order to define the standards, a set of rules are needed to be defined, such as:
 \begin{itemize}
-    \item How can a software perform a request to another system
-    \item What is the set of parameters should be set in the request
-    \item What should be format of the request
-    \item What are the logical parts from which the request consists
-    \item How should the response be represented
-    \item How should the errors be described
+    \item How can a software perform a request to another system;
+    \item What is the set of parameters should be set in the request;
+    \item What should be format of the request;
+    \item What are the logical parts from which the request consists;
+    \item How should the response be represented;
+    \item How should the errors be described.
 \end{itemize}
 
 As a result, on the market persist two approaches of constructing web services, SOAP and REST. Each approach have their strong points and weaknesses and both heavily relies on HTTP protocol, in case of SOAP it also supports other transport protocols.
 
-\paragraph{SOAP}
-SOAP is a messaging protocol which have the entire architecture wrapped around XML data representation. In a nutshell, it is a method of communication between two applications. An example of SOAP communication is represented in figure \ref{soap} The protocol specifies how exactly the HTTP headers should be encoded. A SOAP provider comes in hand with a WSDL file which represents the description of the web service. Things like the possible parameters and their formats, the structure of the message, what is the response format, how it can be correctly accessed. The communication via SOAP protocol is also done using an XML formated files. The structure of the the request and response is documented in the WSDL file and it is validated with the help of XSD schema.
+\textbf{SOAP} is a messaging protocol which have the entire architecture wrapped around XML data representation. In a nutshell, it is a method of communication between two applications. An example of SOAP communication is represented in figure \ref{soap} The protocol specifies how exactly the HTTP headers should be encoded. A SOAP provider comes in hand with a WSDL file which represents the description of the web service. Things like the possible parameters and their formats, the structure of the message, what is the response format, how it can be correctly accessed. The communication via SOAP protocol is also done using an XML formated files. The structure of the the request and response is documented in the WSDL file and it is validated with the help of XSD schema.
 
 \begin{figure}[!ht]
 \centering
@@ -222,10 +212,7 @@ SOAP is a messaging protocol which have the entire architecture wrapped around X
 
 SOAP represents the next evolving stage between computer communication at he application layer. It was able to replace RPC technologies such as DCOM, CORBA, Java RMI. This reinstatement was highly needed because RPC technologies were brining a complex coupling to the programming language, which might prove a bad thing, as long as a panacea type programming language does not exist. On the other hand the SOAP calls are much slower comparing to native RPC applications. There tends to be firewall latency due to the fact that the firewall is analyzing the HTTP transport. SOAP calls are much more likely to get through firewall servers, since HTTP is typically Port 80 compliant, where other calls may be blocked for security reasons. Since HTTP requests are usually allowed through firewalls, programs using SOAP to communicate can be sure that the program can communicate with programs anywhere. SOAP is focuses on exposing pieces of application logic (not data) as services, platform operations. It aims for accessing named operations, each implement some business logic through different interfaces. An advantage offered by SOAP is the WS-Security which adds some enterprise security features. Supports identity through intermediaries, not just point to point (SSL). It also provides a standard implementation of data integrity and data privacy.
 
-\paragraph{REST}
-REST is a simple stateless architecture that generally runs over HTTPS/TLS.
-This type of web service focuses on a reduced and very well defined amount of operations. The most common operations provided by a REST platform are CRUD. 
-The flexibility is given by assigning resources their URI. The neat part is that it heavily relies on URLs. The REST philosophy is deeply entangled with HTTP protocol implementation, for instance the HTTP verbs GET, POST, PUT, DELETE, PATCH etc, are a part of REST RFC. Although it is just a set of guidelines and best practice, if implemented correctly the application avoids ambiguity. This is a blessing and a curse at the same time. Due to the fact that REST RFC is not a set of rigid requirement, developers tend to misinterpret the usage of some methods method. And example is overusing the "POST" method. Hence a lot of debates, discussions and even holly wars are held on this topic. The good part is that it doesn't need tedious descriptor files such as WSDL in order to describe a REST application. The documentation is usually done in textual manner, just like code documentation. REST gained a lot of popularity as being a simpler alternative to SOAP and WSDL-based web services. And the most viable example is the implementation of the entire Word Wide Web. One strong thing wielded by REST applications is that the message and response content can be delivered in any type of format. The most used are XML based format such as HTML, and for API platforms JSON is the most common and handy format, and it has lots of advantages against XML, such as readability, payload size, easy integrable with dynamic languages, it is data oriented.
+\textbf{REST} is a simple stateless architecture that generally runs over HTTPS/TLS.This type of web service focuses on a reduced and very well defined amount of operations. The most common operations provided by a REST platform are CRUD. The flexibility is given by assigning resources their URI. The neat part is that it heavily relies on URLs. The REST philosophy is deeply entangled with HTTP protocol implementation, for instance the HTTP verbs GET, POST, PUT, DELETE, PATCH etc, are a part of REST RFC. Although it is just a set of guidelines and best practice, if implemented correctly the application avoids ambiguity. This is a blessing and a curse at the same time. Due to the fact that REST RFC is not a set of rigid requirement, developers tend to misinterpret the usage of some methods method. And example is overusing the "POST" method. Hence a lot of debates, discussions and even holly wars are held on this topic. The good part is that it doesn't need tedious descriptor files such as WSDL in order to describe a REST application. The documentation is usually done in textual manner, just like code documentation. REST gained a lot of popularity as being a simpler alternative to SOAP and WSDL-based web services. And the most viable example is the implementation of the entire Word Wide Web. One strong thing wielded by REST applications is that the message and response content can be delivered in any type of format. The most used are XML based format such as HTML, and for API platforms JSON is the most common and handy format, and it has lots of advantages against XML, such as readability, payload size, easy integrable with dynamic languages, it is data oriented.
 
 Nowadays JSON is becoming the preferred format especially for RESTful APIs. Because of the format simplicity sometimes it gets harder to define the communication structure. Which is why JSON community is working now on an elegant format called JSON-api. It simplifies a lot things in terms of message structure. It resembles to WSDL only it is less restrictive and more intuitive. Another alternative for structuring the message format is HATEOAS. The purpose it aims is defining application state using hypertext.
 
@@ -234,8 +221,7 @@ In the last 10 years terms like Big Data, NoSQL, Hadoop, Mapreduce were so frequ
 
 After the successful stories of the leading companies, the terms Hadoop, BigData, NoSQl, started to become popular and spread like a fever. Of course lots of companies started using this technologies, because you have to follow the cool kids. The problem was that companies, especially new one, were not making the business smart decisions when choosing the technologies. For instance building an application using a schemaless database. After making the wrong decision it was realized that the application structure actually needed schema. It resulted in managing schema consistency by the application layer, which is an additional layer of complexity that can be handled by a traditional RDBMS engine. A analogous story is related by the Olery company \cite{mongo_to_postgres}. Many startups started to use the newly discussed solutions, forming communities, thus the deceiving labeling started. Everything which is not RDBMS is NoSQL, a term which was intended to be used as a twitter hashtag now covers under its umbrella all the databases which does not rely solely on ACID principles. The same situation is with Big Data. What is the actual size of the data required for being called "big". There are lots of speculations on this topic.
 
-\paragraph{Hadoop}
-Hadoop is a framework used for distributed storage and distributed processing of large scale of data sets. It can benefit from cheap computation power by running on a mediocre computer cluster. The platform is designed by taking into consideration the hardware failure. It is natural that at some point in time a machine from the cluster will stop running. Hadoop embraced this problem and solved it at the software level. Although Hadoop is best known for MapReduce and its distributed filesystem (HDFS, renamed from NDFS), the term is also used for a family of related projects that fall under the umbrella of infrastructure for distributed computing and large-scale data processing. As the Hadoop ecosystem grows, more projects are appearing, not necessarily hosted at Apache, which provide complementary services to Hadoop, or build on the core to add higher-level abstractions.
+\textbf{Hadoop} is a framework used for distributed storage and distributed processing of large scale of data sets. It can benefit from cheap computation power by running on a mediocre computer cluster. The platform is designed by taking into consideration the hardware failure. It is natural that at some point in time a machine from the cluster will stop running. Hadoop embraced this problem and solved it at the software level. Although Hadoop is best known for MapReduce and its distributed filesystem (HDFS, renamed from NDFS), the term is also used for a family of related projects that fall under the umbrella of infrastructure for distributed computing and large-scale data processing. As the Hadoop ecosystem grows, more projects are appearing, not necessarily hosted at Apache, which provide complementary services to Hadoop, or build on the core to add higher-level abstractions.
 
 Applications that run on HDFS have large data sets. A typical file in HDFS is gigabytes to terabytes in size. Thus, HDFS is tuned to support large files. It should provide high aggregate data bandwidth and scale to hundreds of nodes in a single cluster. It should support tens of millions of files in a single instance.
 
@@ -244,13 +230,12 @@ HDFS has a master/slave architecture. An HDFS cluster consists of a single NameN
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=13cm]{1_hadoop_architecture}
-\caption{Hadoop architecture}\label{hadoop_architecture}
+\caption{Hadoop architecture \cite{data_mining_image}}\label{hadoop_architecture}
 \end{figure}
 
 The NameNode and DataNode are pieces of software designed to run on commodity machines. These machines typically run a GNU/Linux operating system (OS). HDFS is built using the Java language; any machine that supports Java can run the NameNode or the DataNode software. Usage of the highly portable Java language means that HDFS can be deployed on a wide range of machines. A typical deployment has a dedicated machine that runs only the NameNode software. Each of the other machines in the cluster runs one instance of the DataNode software. The architecture does not preclude running multiple DataNodes on the same machine but in a real deployment that is rarely the case.
 
-\paragraph{Mapreduce}
-The conceptual logic of Mapreduce is a primitive one. The approach it has looks like a brute-force. It is a batch query processor, and the ability to run a query against an entire dataset and get a result in reasonable amount of time is an astonishing thing. It opens an entire new perspective of processing data. The algorithm works in the following way. The user specify a map function which is applied to every record. The goal is to emit a key value pair to generate a set of intermediate key/value pares. The reduce function merges all intermediate values associated with the same intermediate key. Many real problems can be modeled under this concept. Programs written in this functional style are automatically parallelized and executed on a large cluster of commodity machines. The run-time system takes care of the details of partitioning the input data, scheduling the program’s execution across a set of machines, handling machine failures, and managing the required inter-machine communication. This allows programmers without any experience with parallel and distributed systems to easily utilize the resources of a large distributed system. Here is an example of map reduce executed in MongoDB \ref{mongo_example}. MongoDB api involves a native Mapreduce feature.
+\textbf{Mapreduce} is a rather primitive operation. It has a brute-force like approach. It is a batch query processor, and the ability to run a query against an entire dataset and get a result in reasonable amount of time is an astonishing thing. It opens an entire new perspective of processing data. The algorithm works in the following way. The user specify a map function which is applied to every record. The goal is to emit a key value pair to generate a set of intermediate key/value pares. The reduce function merges all intermediate values associated with the same intermediate key. Many real problems can be modeled under this concept. Programs written in this functional style are automatically parallelized and executed on a large cluster of commodity machines. The run-time system takes care of the details of partitioning the input data, scheduling the program's execution across a set of machines, handling machine failures, and managing the required inter-machine communication. This allows programmers without any experience with parallel and distributed systems to easily utilize the resources of a large distributed system. Here is an example of map reduce executed in MongoDB \ref{mongo_example}. MongoDB API involves a native mapreduce feature.
 
 \lstinputlisting[language=Python, caption={Mapreduce example in MongoDB}, label=mongo_example]{../src/map_reduce_example.js}
 
@@ -259,23 +244,20 @@ Open Media project works with articles fetched from the available public sources
 
 The process described above is one of the many kinds of text preprocessing tasks which involves lexical analysis. Many of theses processes work hand in hand with another. Usually one can operate on a dataset which is a result of the previous one. Here are listed one of the operations regarding lexical analysis:
 \begin{itemize}
-    \item Tokenization
-    \item Part of speech tagging
-    \item Lemmatisation
-    \item Text Segmentation
-    \item Chunker
-    \item Syllabification
-    \item Stemming
+    \item Tokenization;
+    \item Part of speech tagging;
+    \item Lemmatisation;
+    \item Text Segmentation;
+    \item Chunker;
+    \item Syllabification;
+    \item Stemming.
 \end{itemize}
 
-\paragraph{Natural Language Processing}
-Almost all the mentioned above operations are a result of NLP area. It is a field of computer science, artificial intelligence and computational linguistics which studies the interactions between computers and human languages. One of the main challenge of this field involves natural language understanding, where computers are able to extract meaning out of human language input. The classic approach of solving this problem was by hand coding a big set of rules which the machine has to follow. In such way decision trees models were created, basically a lots of "if else" statements. But unfortunately a natural language is a rather complex concepts, and catching all ambiguities makes the decision tree unmaintainable. In the end the traditional decision trees usually resulted in a rather primitive solution. Modern NLP uses lots of machine learning algorithms under the hood. The idea is to apply the learning on a set of corpora where a corpus is a set of documents, sentences which have been hand-annotated with the correct values to be learned. The annotations representing metadata such as part of speech, the word root, synonyms etc. Having a probabilistic model gives the advantage that in a specific situation the solutions can be multiples, with different chances. Usually such type of results are better suited as being a part from a larger system.
+\textbf{Natural Language Processing} is a field of computer science, artificial intelligence and computational linguistics which studies the interactions between computers and human languages. One of the main challenge of this field involves natural language understanding, where computers are able to extract meaning out of human language input. The classic approach of solving this problem was by hand coding a big set of rules which the machine has to follow. In such way decision trees models were created, basically a lots of "if else" statements. But unfortunately a natural language is a rather complex concepts, and catching all ambiguities makes the decision tree unmaintainable. In the end the traditional decision trees usually resulted in a rather primitive solution. Modern NLP uses lots of machine learning algorithms under the hood. The idea is to apply the learning on a set of corpora where a corpus is a set of documents, sentences which have been hand-annotated with the correct values to be learned. The annotations representing metadata such as part of speech, the word root, synonyms etc. Having a probabilistic model gives the advantage that in a specific situation the solutions can be multiples, with different chances. Usually such type of results are better suited as being a part from a larger system.
 
-\paragraph{Tokenization}
-NLP field requires at beginning much primitive actions. The first being the tokenization. It represents the process of breaking a string into words, symbols, phrases or other meaningful elements which could be called tokens. Typically the segmentation is done at the word level. The traditional implementation relies on simple heuristics. Tokens are usually separated by whitespace or punctuation characters. Most of Latin alphabet based languages use inter-word spaces (eg New York-based). For such kind of languages the solutions is straightforward. The grade of complexity is much more increased for languages written in scriptio continua such as Ancient Greek, Chinese, Thai.
+\textbf{Tokenization} is a part of NLP field. The first being the tokenization. It represents the process of breaking a string into words, symbols, phrases or other meaningful elements which could be called tokens. Typically the segmentation is done at the word level. The traditional implementation relies on simple heuristics. Tokens are usually separated by whitespace or punctuation characters. Most of Latin alphabet based languages use inter-word spaces (eg New York-based). For such kind of languages the solutions is straightforward. The grade of complexity is much more increased for languages written in scriptio continua such as Ancient Greek, Chinese, Thai.
 
-\paragraph{Lemmatization}
-Another important part of text analysis is lemmatization. The idea behind it is to reduce the word to a canonical form. Similar words, or with the same root would have the same result after passing the lemmatisation process. This will give the opportunity to operate with a group of words from the perspective of a single entity. The stemming process is rather similar. The difference is that stemming can be applied to an independent word, while lemmatization works based on the word context, meaning that it has a more complex algorithm on the background. The process already requires additional metadata such as the part of speech of the word. Even though the stemming algorithm is more primitive, due to the fact that it doesn't discriminate the word meaning, the implementation algorithm is much simpler. This fact gives an upper hand for a data analysis process, especially when the computational speed is the bottleneck. An example of lemmatization is that the algorithm ensures that "traveling", "traveled" will be recognized as the same word "travel". This aspect is crucial in context of OpenMedia, if the words are not brought to a canonical form, then the frequency analysis would have an increased error rate, which would lead to an unreliable platform not likely to be used by users.
+\textbf{Lemmatization} is another important part of NLP. The idea behind it is to reduce the word to a canonical form. Similar words, or with the same root would have the same result after passing the lemmatisation process. This will give the opportunity to operate with a group of words from the perspective of a single entity. The stemming process is rather similar. The difference is that stemming can be applied to an independent word, while lemmatization works based on the word context, meaning that it has a more complex algorithm on the background. The process already requires additional metadata such as the part of speech of the word. Even though the stemming algorithm is more primitive, due to the fact that it doesn't discriminate the word meaning, the implementation algorithm is much simpler. This fact gives an upper hand for a data analysis process, especially when the computational speed is the bottleneck. An example of lemmatization is that the algorithm ensures that "traveling", "traveled" will be recognized as the same word "travel". This aspect is crucial in context of OpenMedia, if the words are not brought to a canonical form, then the frequency analysis would have an increased error rate, which would lead to an unreliable platform not likely to be used by users.
 
 \subsubsection{Data Mining}
 According to wikipedia sources, data mining, an interdisciplinary subfield of computer science, is the computational process of discovering patterns in large data sets involving methods at the intersection of artificial intelligence, machine learning, statistics, and database systems. The overall goal of the data mining process is to extract information from a data set and transform it into an understandable structure for further use. \cite{wiki_data_mining}
