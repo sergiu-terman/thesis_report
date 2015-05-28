@@ -81,6 +81,23 @@ The execution time of the code shown above on an average PC takes around 5 minut
 It looks quite similar to the previous mapreduce. The only different thing is that it runs once there are data updates but not at every user requests. The resulted data size is 456 MB. This is a number that can be worked with. More than that, it has such a structure that the user requests no longer need to execute mapreduce tasks. It is just a simple query with a simple conditional which takes around 0.5 seconds. As it was mentioned before that MongoDB offers indexing features. After composing and index by the word field the query result improved even better. It got to immediate responses around few milliseconds. Data preprocessing is indeed an astonishing improvement to the system. It decreased the request time from five minutes to few milliseconds. Alongside the data compression mapreduce job another compression task is required. The job is intended to computes the number of published articles for every month for every media channel. This data is used to compute the a specific ratio. The number of articles which have the mentioned the word over the number of published articles in a single month.
 
 \subsection{Visualizing the data}
+Data visualization is the part that matters to the end user. Everything done until now does not have a value if data is not represented under a human readable format. It is important that data should be represented in such way that it would communicate a message. A message that is clear enough and from which viable conclusions can be drawn. In context of OpenMedia the only method for displaying data is the line chart. For every user requests there are available only two line charts. Even though it might be not very much, building the whole infrastructure took a lot of time and research. Besides in case there is a sudden idea to add a new type of search, or a new type of data visualization the implementation phase would be very easy due to the fact that there is a platform which backs up and does a lot of hard work regarding data flow.
+
+The data visualization happens in a browser page. This concludes that the tools for building plots are JavaScrpit based libraries. OpenMedia platform uses D3 library for constructing visual data representations \cite{d3}. D3, coming from Data-Driven Documents, is a library used for constructing dynamic and interactive data visualization in a web browser. It heavily relies on SVG, HTML5 and CSS standards. The most powerful point of this library is that it gives a great control over the final result. Embedded within an HTML webpage, the JavaScript D3.js library uses pre-built JavaScript functions to select elements, create SVG objects, style them, or add transitions, dynamic effects or tooltips to them. These objects can also be widely styled using CSS. Large datasets can be easily bound to SVG objects using simple D3.js functions to generate rich text/graphic charts and diagrams. The data can be in various formats, most commonly JSON, comma-separated values (CSV) or geoJSON, but, if required, JavaScript functions can be written to read other data formats.
+
+As it was mentioned there are only two types of line plots for every user requests. The line-plots depicts how in how many articles the specified word was mentioned in a month. The first chart computes the word frequency in relation with the total amount of articles published by the source in that month. The second plot simply shows the number of mentions of the word. In order to browse the plot information in a easy manner it was enhanced with tooltip feature. When a plot is hovered it shows how many mentions are present and what is the date to which the the data relates. A representation of the result can be observed in figure \ref{frequency_plot} and figure \ref{mentions_plot}.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{3_frequency_plot}
+\caption{Frequency line plot}\label{frequency_plot}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{3_mentions_plot}
+\caption{Mentions line plot}\label{mentions_plot}
+\end{figure}
 \subsection{Providing the UI}
 
 \clearpage
