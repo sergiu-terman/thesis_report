@@ -38,7 +38,7 @@ The sequence diagram, figure \ref{parser_sequence}, represents the action of par
 \caption{Article parser sequence diagram}\label{parser_sequence}
 \end{figure}
 
-The last, time consuming, step in the data mining cycle is executing natural language processing on the given data. This part is decisive in the OpenMedia project. Running analysis on simple chunks of text is inefficient. Which is why text should be annotated with metadata such as part of speech, lemmatized forms etc. The way it differs from the previous steps is that it does not need customized classes. Presumably the articles are already saved under the same form, the scripts iteratively extracts articles. Each iteration undergoes a sequence of NLP operations, which can be observed in the diagram figure \ref{nlp_sequence}. The operations are: tokenization, part of speech tagging, and lemmatization. The last step of an iteration is splitting the articles and saving back to database under a different form.
+The last, time consuming, step in the data mining cycle is executing natural language processing on the given data. This part is decisive in the OpenMedia project. Running analysis on simple chunks of text is inefficient. Which is why text should be annotated with metadata such as part of speech, lemmatized forms etc. The way it differs from the previous steps is that it does not need customized classes. Presumably the articles are already saved under the same form, the scripts iteratively extracts articles. Each iteration undergoes a sequence of NLP operations, which can be observed in the diagram figure \ref{nlp_sequence}. The operations are: tokenization, part of speech tagging etc. The last step of an iteration is splitting the articles and saving back to database under a different form.
 
 \begin{figure}[!ht]
 \centering
@@ -65,7 +65,7 @@ Going back to the client part of the application, in the figure \ref{app_state_d
 
 In the following part of this chapter is described the most important class diagrams of OpenMedia. Most of them are related to the data mining part of the application. Information about the system components interaction is not enough for understanding the platform. The class diagrams can deliver information under a higher level of granularity, hence the system becomes more easy to comprehend.
 
-Each step of the data gathering aspect of OpenMedia has class diagram. It was mentioned that every custom fetcher should have it's own implementation but with a similar interface. This statement is emphasised in figure \ref{fetcher_class}. Fetcher is the abstract class. It has a set of messages which are implemented by the custom implementations, such as UnimediaFetcher, TimpulFetcher and PublikaFetcher. Fetcher class aggregates SmartFetcher class. SmartFetcher encapsulates the logic of requesting a web page where the article is represented.
+Each step of the data gathering aspect of OpenMedia has class diagram. It was mentioned that every custom fetcher should have it's own implementation but with a similar interface. This statement is emphasised in figure \ref{fetcher_class}. Fetcher is the abstract class. It has a set of messages which are implemented by the custom implementations, such as UnimediaFetcher, TimpulFetcher and PublikaFetcher. Fetcher class aggregates SmartFetcher class.
 
 \begin{figure}[!ht]
 \centering
@@ -73,7 +73,7 @@ Each step of the data gathering aspect of OpenMedia has class diagram. It was me
 \caption{Fetching Class Diagram}\label{fetcher_class}
 \end{figure}
 
-Next class diagram is depicting the parsing objects. The conceptual model is done in an analogical way. An abstract class is predefine and has a set of predefined messages. The methods denotes the possible actions needed to successfully get an article from file storage, parse it and save it to a database. The implementations of the abstract class are UnimediaParser and TimpulParser. The Parser class has an association with ParsedPage class. ParsedPage is a MongoDB model and it is used to interact with the database in language friendly way. The rest of database models are be described below.
+Next class diagram is depicting the parsing objects. The conceptual model is done in an analogical way. An abstract class is predefine and has a set of predefined messages. The methods denotes the possible actions needed to successfully get an article from file storage, parse it and save it to a database. The implementations of the abstract class are UnimediaParser and TimpulParser. The Parser class has an association with ParsedPage class. ParsedPage is a MongoDB model and it is used to interact with the database. The remaining models are be described below.
 
 \begin{figure}[!ht]
 \centering
