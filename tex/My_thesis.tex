@@ -7,10 +7,17 @@
 
 % \numberwithin{lstlisting}{section}
 
-
 \phantomsection
 
-% PAGINA DE TITLU
+\input{Abstract.tex}
+\clearpage
+
+\input{Rezumat.tex}
+\clearpage
+
+
+%##############################################################################
+
 \input{Title.tex}
 \cleardoublepage
 
@@ -19,7 +26,6 @@
 \addtocontents{toc}{\protect\thispagestyle{empty}} % no page number on the table of contents page
 \cleardoublepage
 
-%LISTA FIGURILOR. Este recomandabila daca in text ai peste cel putin 10-15 FIGURI
 \listoffigures
 \addcontentsline{toc}{section}{List of figures}
 \clearpage
@@ -60,12 +66,7 @@
 \input{Chapter_4.tex}
 \cleardoublepage
 
-% IMPORTANT REMARK
-% If your table of contents need to be splitted in two parts (in order to accomodate the frame used for TOC)
-% within the body text, right before the chapter/section that you want to be started on anew page,
-% you should add:     \addtocontents{toc}{\protect\newpage}
 
-%CONCLUZII
 \phantomsection
 \addcontentsline{toc}{section}{Conclusions}
 \input{Conclusions.tex}

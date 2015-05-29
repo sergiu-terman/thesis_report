@@ -1,17 +1,11 @@
 \section*{Rezumat}
+Lucrarea \textbf{Utizitarea analizei semantice a online media din Moldova, pentru detectarea tendințelor si modelelor} prezentată de Terman Sergiu a fost scrisă în engleză. Ea constă din 25 de figuri, 11 secvențe de cod, 8 tabele și 14 referințe. Lucrarea face parte din introducere, 4 capitole și concluzii.
 
-Teza \textbf{Modele matematice şi metode de eficientizare a conversiei energiilor regenerabile
- în baza efectelor aero-hidrodinamice}, prezentată de către Viorel Bostan pentru 
-conferirea gradului ştiinţific de doctor habilitat în tehnică, a fost elaborată la Universitatea Tehnică a Moldovei, Chişinău, este scrisă în limba română şi conţine 342 pagini, 90 de figuri, 38 tabele, şi 250 de titluri bibliografice. Structura tezei include: introducerea, 6 capitole, concluzii şi anexe. Anexele conţin 145 de pagini cu 52 de figuri şi 48 tabele.
-	
-Teza este consacrată studiului fenomenelor aero-hidrodinamice în rotoarele turbinelor eoliene (TE) şi microhidrocentralelor de flux (MCHF) de mică putere ($P<20$ kW), cu aplicarea modelelor matematice de descriere a fizicii curgerii fluidelor şi a metodelor moderne de simulare numerică a turbulenţei din cadrul dinamicii fluidelor CFD.
-	
-Scopul lucrării constă în sporirea eficienţei conversiei şi a capacităţilor funcţionale ale turbinelor eoliene şi microhidrocentralelor de flux de mică putere.
-	
-Au fost identificate modelele şi metodele matematice moderne de descriere a curgerii turbulente a fluidului, specifică rotoarelor de mică putere, cu evidenţierea efectelor aero-hidrodinamice tranzitorii şi în vecinătatea palelor. A fost argumentate profilurile aero-hidrodinamice ale palelor eficiente din punct de vedere al randamentului conversiei energiei şi în baza lor au fost elaborate concepte originale de rotoare aero-hidrodinamice.
-	
-În baza modelelor CAD ale rotoarelor propuse: au fost efectuate simulări CFD complexe ale curgerii tranzitorii a fluidului prin rotoare şi în vecinătatea palelor, cu determinarea gradului de influenţă a parametrilor constructiv-cinematici asupra caracteristicilor de putere şi factorilor de performanţă aero-hidrodinamică a rotoarelor TE şi MHCF; a fost efectuată analiza fenomenului de curgere a fluidului în stratul limită şi identificate soluţii tehnice de control şi minimizare a impactului negativ al acestuia asupra eficienţei conversiei energiei.
+Teza are ca scop cercetarea potențialului jurnalismului pe bază de date în Republica Moldova. Prin urmare proiectul OpenMedia a fost dezvoltat. Aceasta este o platformă care agreghează canalele media disponibile online, pentru a oferi mijloace de vizualizare a frecvenței menționării a unui cuvânt specificat de către utilizator.
 
-În baza rezultatelor cercetărilor, au fost elaborate şi fabricate modele noi de TE şi MHCF pentru diverse aplicaţii, inclusiv conceptul TE cu rotor basculant şi orientare la direcţia curenţilor de aer cu windrose cu profil aerodinamic al palelor. Soluţiile tehnice elaborate au fost protejate cu 17 brevete de invenţie şi apreciate la saloanele internaţionale de inovaţii, cercetare şi transfer tehnologic cu 43 medalii de aur, 13 de argint şi 2 de bronz.
+Aplicația a fost dezvoltată utilizând limbajul de programare Ruby. Platforma consită din 2 părți. Prima parte reprezinta adunarea și preprocesarea datelor. Aceasta poate fi divizată în 4 entități. Accesarea canalelor media și descărcarea articolelor, parsarea fișierelo descărcate pentru a extrage conținutul textual al articolelor și salvarea lor în bază de date, aplicarea operațiilor de procesare a limbajului natural, pregătirea datelor pentru a fi vizualizate. A 2 parte a platformei reprezintă aplicația utilizatorului. Aceasta are drept obiectiv să ofere o modalitate interactivă de interogare a cuvintelor și vizualizare a datelor. Reprezentarea datelor este realizată prin intermediul graficilor liniare ce denotă frecvența cuvântului în cadrul diferitor surse media.
 
-Cuvinte-cheie: modele matematice; simulare numerică CFD; strat limită; curgere turbulentă, rotor aero-hidrodinamic, turbină eoliană; microhidrocentrală.
+Tecnologiile utilizate sunt următoarele. Sinatra framework pentru dezvoltarea interfaței web. Baza de date folosită este MongoDB. Aplicația Sidekiq este folosită pentru lansarea sarcinilor asincrone. Mai este folosit și serviciul web Racai, pentru executarea operațiunilor de procesare a limbajului natural.
+
+
+OpenMedia reprezintă o încercare de a oferi un instrument de jurnalism pe bază de date orientată pentru Republica Moldova. Ea nu cuprinde multe funcționalități însă are infrastructura necesară pentru o dezvoltare în viitor. Acest proiect a demonstat faptul că așa un instrument are un mare potențial pe piață locală, fiind pioner în acest domeniu.
