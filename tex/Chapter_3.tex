@@ -98,6 +98,25 @@ As it was mentioned there are only two types of line plots for every user reques
 \includegraphics[width=15cm]{3_mentions_plot}
 \caption{Mentions line plot}\label{mentions_plot}
 \end{figure}
+
 \subsection{Providing the UI}
+To provide a good user interface is crucial to any software engineer. The whole point of creating an application is not how it works in the background, on how many clusters it runs on, or how efficiently the data is stored. All this details does not matter as long as a good user interface is present. More than that all the mentioned details combined can help to create the great user experience. Making a good application is not about creating a bunch of functionalities. It is about designing a flow of actions that feels natural to those who end up using the product.
+
+OpenMedia platform uses browser web page application for the client side. A web platform usually relies on HTTP protocol concluding that in order to start the product a tool for building web applications is required. The chosen technology is Sinatra\cite{sinatra}. Sinatra is a ruby based framework. It is very simple to use and is perfect for building small applications. In listing \ref{sinatra_app} is represented a snipped of code which proves how simple is to implement the business logic of a specific HTTP method on a given URL. The given code is almost everything needed for running the applications. The hassles starts when trying add different components to the application. Due to the fact the Sinatra is very simple it requires a bit of tunning when it comes adding modules.
+
+\lstinputlisting[language=Ruby, caption={HTTP requests handling implemented with Sinatra}, label=sinatra_app]{../src/sinatra_app.rb}
+
+The client part of the application was initially design having in mind that user requests will launch time-consuming tasks. In order to run the jobs in the background and keep the UI interactive, Sidekiq technology was used\cite{sidekiq}. It is ruby library used for launching asynchronous tasks. For dealing with long requests, simple threads could be used but this would mean loading the applications server. The good thing about Sidekiq is that it can run on a separate server. Another thing is that it based on message queue system. Thus the amount of workers running simultaneously can be easily managed. Sidekiq uses Redis database for queuing jobs. Redis is a key-value database\cite{redis} that is often chosen for solving different type of solutions which involves volatile data. The most common use is data caching. Due to the fact that the data is stored in RAM it offers a very fast IO operations. Besides it supports a various built in operations. In listing \ref{sidekiq_worker} is represented a worker class used in OpenMedia.
+
+\lstinputlisting[language=Ruby, caption={Sidekiq worker class}, label=sidekiq_worker]{../src/sidekiq_worker.rb}
+
+Now that the time resourceful task execution is separated to an another node, a new problem surfaces. How to notify the user that a specific task has finished. The browser web page and a Sidekiq worker are two totally decoupled instances. In oder to solve this issue an additional node is added to the platform which does the communication between theses two sides. Faye tool is used for this part of the application \cite{faye}. It is a publisher subscriber system which relies on web sockets. When a request submits a search request Sinatra responds immediately with a specific token, it also launches a task on Sidekiq. What happens on the client browser is that after the token was received, it subscribes to a Faye channel specified by the token string. The worker is also aware of the token. After finishing the job it sends an HTTP requests to the channel. The client receives a messages thus a notification is rendered. In figure \ref{notifications} is illustrated an example.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{3_notifications}
+\caption{An example of notification}\label{notifications}
+\end{figure}
+
 
 \clearpage
