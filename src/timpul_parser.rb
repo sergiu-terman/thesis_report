@@ -14,18 +14,9 @@ def parse(text, id)
   {
     source:         "timpul",
     title:          title,
-    original_time:  timestring,
     datetime:       parse_timestring(timestring),
-    views:          0, # No data
-    comments:       0, # Disqus iframe
     content:        content,
     article_id:     id.to_i,
     url:            build_url(id)
   }
-end
-
-def save (id, hash)
-  puts hash
-  page = ParsedPage.new(hash)
-  page.save
 end
